@@ -6,7 +6,7 @@
 localectl list-keymaps # list keymaps
 loadkeys de-latin1 # set german keymap
 
-# verify boot mode, should return 64, otherwise this does not work!
+# verify boot mode, should return 64, otherwise panic!
 cat /sys/firmware/efi/fw_platform_size 
 
 -------- Internet --------
@@ -196,16 +196,24 @@ env = __GLX_VENDOR_LIBRARY_NAME,nvidia
 --- PRIME ----
 # you can use nvidia-prime in optimus systems for PRIME render offload
 # meaning forcing an application to use the dedicated GPU
-sudo pacman -S prime-run
+sudo pacman -S nvidia-prime
 
 # checks if offloading works: 
 prime-run glxinfo | grep "OpenGL renderer"
 
 -------- Pkgbible --------
+sudo pacman -S git openssh
+
+# generate a ssh keypair for private repositories
+ssh-keygen
+# press enter to leave file destination as default
+enter password
+
+
 # if not already clone dots repo into /home/usrname (~) dir 
 # dotfiles can be replicated on a new system like:
 git clone --bare <git-repo-url> $HOME/.dotfiles
-alias dotfiles='/usr/bin/git --git-dir="$HOME/.dotfiles/" --work-tree="$HOME"'
+alias dotfiles='/usr/bin/git --git-dir="$HOME/.dotfiles/" --work-tree="$HOME"' # already configured in fish/config.fish
 dotfiles checkout
 dotfiles config --local status.showUntrackedFiles no
 
@@ -216,6 +224,13 @@ dotfiles config --local status.showUntrackedFiles no
 # all missing packages from the AUR for instance have to be installed manually using paru or yay 
 # (might add functionality for that later in the pkgbible)
 # check pkgbible for foreign/missing packages i.e. Zen browser or dragondrop
+
+
+# load all scripts to /usr/local/bin with: 
+~/.scripts/load-scripts.sh ~/.scripts
+
+# load mango :)
+load-ttf ~/.config/fonts/mango.ttf
 
 -------- Start Hyprland on login --------
 # edit /etc/profile and append: 
