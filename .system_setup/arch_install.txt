@@ -233,7 +233,7 @@ dotfiles config --local status.showUntrackedFiles no
 load-ttf ~/.config/fonts/mango.ttf
 
 -------- Start Hyprland on login --------
-# edit /etc/profile and append: 
+# edit /etc/profile and append (or if in dots repo just copy): 
 #:)
 if [[ $USER != "root" ]]; then
 	if command -v fastfetch &> /dev/null; then
@@ -248,6 +248,9 @@ fi
 #:(
 
 # this will execute hyprland as a uwsm unit and (if installed) execute fastfetch
+
+# important!!
+remove monitor config from ~/.config/hypr/hyprland.conf or else black screen is possible!
 
 reboot
 log in as usrname 
