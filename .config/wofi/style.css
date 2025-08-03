@@ -1,0 +1,92 @@
+@import ".config/wofi/colors.css";
+
+* {
+  font-family: 'Mango', monospace;
+  font-size: 18px;
+}
+
+/* Window */
+window {
+  margin: 0px;
+  padding: 10px;
+  border: 4px solid alpha(@light_main, 0.3);
+  border-radius: 10px;
+  background-color: alpha(@dark_base, 0.3);
+}
+
+/* Inner Box */
+#inner-box {
+  margin: 5px;
+  padding: 10px;
+  border: none;
+  background-color: transparent;
+}
+
+/* Outer Box */
+#outer-box {
+  margin: 5px;
+  padding: 10px;
+  border: none;
+  background-color: transparent;
+}
+
+/* Scroll */
+#scroll {
+  margin: 0px;
+  padding: 10px;
+  border: none;
+  background-color: transparent;
+}
+
+/* Input */
+#input {
+  margin: 5px 20px;
+  padding: 10px;
+  border: none;
+  border-radius: 12px;
+  color: @txt_main;
+  background: linear-gradient(
+    to right,
+    alpha(@light_main, 0.3),  /* Semi-transparent (60% opacity) */
+    alpha(@light_highlight, 0.3)      /* Fully transparent (0% opacity) */
+  );
+}
+
+#input image {
+    border: none;
+    color: @txt_highlight;
+}
+
+#input * {
+  outline: 4px solid @txt_highlight!important;
+}
+
+/* Text */
+#text {
+  margin: 5px;
+  border: none;
+  color: @txt_main;
+}
+
+#entry {
+  background-color: transparent;
+}
+
+#entry arrow {
+  border: none;
+  color: @txt_main;
+}
+/* Selected Entry */
+#entry:selected {
+  border-radius: 12px;
+  border: 3px solid @light_highlight;
+  box-shadow: 0 0 8px alpha(@light_highlight, 0.3);
+}
+
+#entry:selected #text {
+  color: @txt_highlight;
+}
+
+#entry:drop(active) {
+  background-color: @light_main!important;
+}

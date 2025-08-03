@@ -1,0 +1,7 @@
+make ~/.config/waybar/colors.css
+make ~/.config/wofi/colors.css
+make ~/.config/uwsm/colors.env
+
+replace ~/.config/nvim/colors/gruvbuddy.lua
+replace ~/.config/starship/starship.toml
+replace ~/.config/kitty/current-theme.conf

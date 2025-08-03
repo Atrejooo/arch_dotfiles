@@ -1,0 +1,88 @@
+format = '''
+[╭](fg:txt_highlight)[](fg:txt_main)$os$username[ ](fg:txt_main bg:light_base)$directory[ ](fg:light_base)$git_branch
+[╰](fg:txt_highlight)$character'''
+
+# right_format = '''
+# $time
+# '''
+
+add_newline = false
+palette = 'colors'
+
+[palettes.colors]
+dark_base = '#000000'                # @@dark_base@@ 
+dark_main = '#111111'                # @@dark_main@@ 
+light_base = '#47476a'               # @@light_base@@ 
+light_main = '#8b9bab'               # @@light_main@@ 
+light_highlight = '#cdddff'          # @@light_highlight@@
+txt_main = '#909acb'                 # @@txt_main@@ 
+txt_dark = '#111111'                 # @@txt_dark@@ 
+txt_highlight = '#aaccff'            # @@txt_highlight@@ 
+txt_red = '#c62e60'                  # @@txt_red@@        
+
+# Prompt symbols 
+[character]
+success_symbol = "[❯](txt_highlight)"
+error_symbol = "[❯](txt_red)"
+format = '$symbol'
+
+[os]
+disabled = false
+style = "bg:txt_main fg:dark_main"
+[os.symbols]
+Windows = "󰍲 "
+Ubuntu = "󰕈 "
+SUSE = " "
+Raspbian = "󰐿 "
+Mint = "󰣭 "
+Macos = "󰀵 "
+Manjaro = " "
+Linux = "󰌽 "
+Gentoo = "󰣨 "
+Fedora = "󰣛 "
+Alpine = " "
+Amazon = " "
+Android = " "
+Arch = "󰣇 "
+Artix = "󰣇 "
+EndeavourOS = " "
+CentOS = " "
+Debian = "󰣚 "
+Redhat = "󱄛 "
+RedHatEnterprise = "󱄛 "
+Pop = " "
+[username]
+style_user = 'bg:txt_main fg:dark_main'
+style_root = 'bg:txt_main fg:dark_main'
+format = '[$user]($style)'
+show_always = true
+[directory]
+format = "[$path](fg:txt_main bg:light_base)"
+truncation_length = 3
+truncate_to_repo = false
+truncation_symbol = "…/"
+[directory.substitutions]
+"Documents" = "󰈙 "
+"Downloads" = " "
+"Music" = " "
+"Pictures" = " "
+"Videos" = " "
+"Workspace" = " "
+
+[git_branch]
+format = "[](fg:txt_main)[ ](fg:light_base bg:txt_main )[](fg:txt_main bg:light_base)[(fg:txt_main bg:light_base) $branch](fg:txt_main bg:light_base)[](fg:light_base) "
+
+# [time]
+# format = "[](fg:color8 bg:color4)[ ](bg:color8 fg:color5)[](fg:color8 bg:color4)[(bg:color8 fg:color5) $time](fg:color3 bg:color4)[](fg:color4) "
+# disabled = false
+# time_format = "%R"                                                                                                                                    # Hour:Minute Format
+#
+# [python]
+# format = "[](fg:color8 bg:color4)[${symbol}${version}](bg:color8 fg:color5)[](fg:color8 bg:color4)[(bg:color8 fg:color5)( ${virtualenv})](fg:color3 bg:color4)[](fg:color4) "
+# symbol = ' '
+# pyenv_version_name = true
+# pyenv_prefix = 'venv'
+#
+# [rust]
+# symbol = ' '
+# format = "[](fg:color8 bg:color4)[${symbol}${version}](bg:color8 fg:color5)[](fg:color8 bg:color4)[(bg:color8 fg:color5)( ${virtualenv})](fg:color3 bg:color4)[](fg:color4) "

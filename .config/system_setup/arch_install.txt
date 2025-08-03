@@ -1,0 +1,258 @@
+# mark start end end of modified system files helps to find mess ups
+
+
+-------- Inital --------
+# if using a german keyboard layout
+localectl list-keymaps # list keymaps
+loadkeys de-latin1 # set german keymap
+
+# verify boot mode, should return 64, otherwise this does not work!
+cat /sys/firmware/efi/fw_platform_size 
+
+-------- Internet --------
+ip link # verify network interface is listed and enabled
+rfkill # verify that the wireless card is not blocked
+
+iwctl # authenticate to the wirless network
+ping archlinux.org # verify it works
+timedatectl # ensure the system clock is synchronized correctly
+
+-------- Partitions --------
+fdisk -l # list disks
+fdisk /dev/<block-device> # start manipulating formatting of block-device, changes are only applied when 'w' is entered
+m # list commands
+g # create new partitioning table = delete old partitions
+n # create new partition -> will be used as ESP := <boot_partition>
+# prompted to enter partition number -> press enter to leave at default
+# prompted to set first sector -> press enter to leave default
++1G # set partition size to 1Gibibyte
+t # set type
+1 # set to EFI
+
+n # rest will be used for everything else := <linux_partition>
+# leave all at default -> press enter until done
+
+p # print to verify -> should see two partitions, one with type EFI (1G) other with Linux filesystem
+w # apply changes
+
+-------- LUKS --------
+cryptsetup luksFormat /dev/<linux_partition> # create LUKS container
+cryptsetup open /dev/<luks_partition> cryptroot # open LUKS container -> available at /dev/mapper/cryptroot
+
+-------- btrfs --------
+mkfs.btrfs --label system /dev/mapper/cryptroot # format LUKS container to btrfs, assign label 'system' to it
+mount -t btrfs LABEL=system /mnt # mount the btrfs filesystem, identified by its assigned label
+btrfs subvolume create /mnt/@root # create root subvolume
+btrfs subvolume create /mnt/@home # create home subvolume
+btrfs subvolume create /mnt/@var_log # create var/log subvolume
+btrfs subvolume create /mnt/@snapshots # create snapshots subvolume
+btrfs subvolume create /mnt/@swap # create swap volume
+umount -R /mnt # unmount root rekursivly to change mount options
+
+# -t btrfs -> specify that this is a btrfs filesystem
+# -o specify comma separated mount options
+# defaults -> use defaults for everything unspecified
+# x-mount.mkdir -> automatically create missing mount directories
+# compress=zstd -> use compression with zstd, saving some space with minimal overhead
+# ssd -> specify that the underlying disk is an SSD, allows optimization for SSD access
+# noatime -> do not update inode access times, usually not needed, saves time and SSD wear
+# subvol=@root -> mount the subvolume @root, otherwise the entire filesystem
+# LABEL=system -> identifies the btrfs filesystem to mount by assigned label
+# /mnt -> mount point
+mount -t btrfs -o defaults,x-mount.mkdir,compress=zstd,ssd,noatime,subvol=@root LABEL=system /mnt
+mount -t btrfs -o defaults,x-mount.mkdir,compress=zstd,ssd,noatime,subvol=@home LABEL=system /mnt/home
+mount -t btrfs -o defaults,x-mount.mkdir,compress=zstd,ssd,noatime,subvol=@var_log LABEL=system /mnt/var/log
+mount -t btrfs -o defaults,x-mount.mkdir,compress=zstd,ssd,noatime,subvol=@snapshots LABEL=system /mnt/.snapshots
+mount -t btrfs -o defaults,x-mount.mkdir,ssd,noatime,subvol=@swap LABEL=system /mnt/swap # swap can not be compressed
+chattr +C /mnt/swap # disable CoW for swap subvolume, as CoW does not work for swap
+
+-------- Swap --------
+# create swap file in the swap subvolume, they say it should match the size of RAM
+btrfs filesystem mkswapfile --size 8G /mnt/swap/swapfile 
+swapon /mnt/swap/swapfile # activate swap
+
+-------- ESP --------
+# format the boot partition
+mkfs.fat -F32 -n ESP /dev/<boot_partition> # format the ESP, label it 'ESP'
+mount --mkdir LABEL=ESP /mnt/boot # mount the ESP, identified by assigned label, the directory is automatically created with --mkdir
+
+-------- mirrors --------
+cat /etc/pacman.d/mirrorlist # inspect mirror list, edit if needed
+
+-------- install essentials --------
+# intel-ucode replaced with amd-ucode
+# install base package, kernel and firmware + other needed stuff
+pacstrap -K /mnt base linux linux-firmware intel-ucode networkmanager nano vim man-db man-pages texinfo btrfs-progs grub-btrfs grub efibootmgr sudo 
+
+-------- fstab --------
+genfstab -U /mnt >> /mnt/etc/fstab # generate filesystem table
+# edit fstab in /mnt/etc/fstab
+# mount the swapfile on system start, do not delete the entry that mounts /swap, it is needed for this swapfile -> may already be fine
+/swap/swapfile none swap defaults 0 0 
+
+-------- chroot --------
+# change root into the new system
+arch-chroot /mnt 
+
+-------- time --------
+ln -sf /usr/share/zoneinfo/Europe/Berlin /etc/localtime
+# generate /etc/adjtime, clock drift prevention is missing, should be added later
+hwclock --systohc 
+
+-------- localization --------
+edit /etc/locale.gen and uncomment needed UTF locales, including en_US.UTF-8 UTF-8 as fallback
+# everything used in the next step "/etc/locale.conf" must be uncommented, here de_DE.UTF-8 and en_US.UTF-8
+locale-gen # generate according to configuration in /etc/locale.gen
+
+create /etc/locale.conf
+LANG=en_US.UTF-8 # set to US locale
+LC_MONETARY=de_DE.UTF-8
+LC_MEASUREMENT=de_DE.UTF-8
+LC_PAPER=de_DE.UTF-8
+LC_TELEPHONE=de_DE.UTF-8
+LC_TIME=de_DE.UTF-8
+
+create /etc/vconsole.conf
+KEYMAP=de-latin1 # make german keymap persistent
+
+-------- network configuration --------
+# choose name for the device
+create /etc/hostname
+ 
+systemctl enable NetworkManager.service
+
+-------- initramfs --------
+modify /etc/mkinitcpio.conf
+- HOOKS=(base udev autodetect modconf block keyboard keymap encrypt filesystems fsck) # mostly the 'encrypt', it provides tools for decrypting the LUKS container
+- add grub-btrfs-overlayfs to end of HOOKS # needed for grub-btrfs
+- add microcode after autodetect <- may already be there
+mkinitcpio -P # regenrate initramfs to apply changes in the .conf
+
+-------- root password --------
+passwd # set root password
+
+------ boot loader --------
+grub-install --target=x86_64-efi --efi-directory=/boot --bootloader-id=GRUB # install grub
+edit /etc/default/grub
+GRUB_CMDLINE_LINUX="cryptdevice=UUID=<LUKS_UUID>:cryptroot root=/dev/mapper/cryptroot rootflags=subvol=@root" # blkid /dev/<luks_container> to find LUKS_UUID
+uncomment GRUB_ENABLE_CRYPTODISK=y
+
+grub-mkconfig -o /boot/grub/grub.cfg
+
+-------- reboot --------
+exit # exit chroot environment
+swapoff -a # disable swap
+umount -R /mnt # unmount all partitions to detect busy partitions
+reboot # reboot the system and remove the install medium
+# log in with root account
+
+-------- User account --------
+useradd -m usrname
+passwd usrname
+usermod -aG wheel usrname
+
+edit /etc/sudoers
+uncomment line giving wheel group sudo rights
+# Set default EDITOR to restricted version of nano, and do not allow visudo to use EDITOR/VISUAL.
+Defaults      editor=/usr/bin/rnano, !env_editor
+
+exit
+login as usrname
+
+-------- Nvidia --------
+# refer to https://wiki.hyprland.org/Nvidia/
+
+# first check card architecture
+# is it turing or newer just use nvidia-open packages (2060 series and up) 
+sudo pacman -S nvidia-open 
+# for older architectures use nvidia packages (for example dkms which is for any kernel, or just nvidia is also fine in most cases [see wiki]) 
+sudo pacman -S nvidia-dkms 
+
+# needed dependency!
+sudo pacman -S nvidia-utils
+
+# mostly needed for steam but can be installed manually 
+sudo pacman -S lib32-nvidia-utils 
+
+# check if this returns Y
+cat /sys/module/nvidia_drm/parameters/modeset   
+
+# done, following only needed when problems arise (f.e. dirvers load too late)
+edit /etc/mkinitcpio.conf
+MODULES=(... nvidia nvidia_modeset nvidia_uvm nvidia_drm ...)
+create/edit /etc/modprobe.d/nvidia.conf
+options nvidia_drm modeset=1 fbdev=1
+sudo mkinitcpio -P
+reboot
+
+# check again
+cat /sys/module/nvidia_drm/parameters/modeset 
+
+# these env vars should be set to nvidia (already in .config)
+env = LIBVA_DRIVER_NAME,nvidia
+env = __GLX_VENDOR_LIBRARY_NAME,nvidia
+
+
+--- PRIME ----
+# you can use nvidia-prime in optimus systems for PRIME render offload
+# meaning forcing an application to use the dedicated GPU
+sudo pacman -S prime-run
+
+# checks if offloading works: 
+prime-run glxinfo | grep "OpenGL renderer"
+
+-------- Pkgbible --------
+# if not already clone dots repo into /home/usrname (~) dir 
+# dotfiles can be replicated on a new system like:
+git clone --bare <git-repo-url> $HOME/.dotfiles
+alias dotfiles='/usr/bin/git --git-dir="$HOME/.dotfiles/" --work-tree="$HOME"'
+dotfiles checkout
+dotfiles config --local status.showUntrackedFiles no
+
+# execute the script under: 
+~/.config/system_setup/pkgbible_build.sh
+
+# this installs all desktop and quality of life related applications (from main repo)
+# all missing packages from the AUR for instance have to be installed manually using paru or yay 
+# (might add functionality for that later in the pkgbible)
+# check pkgbible for foreign/missing packages i.e. Zen browser or dragondrop
+
+-------- Start Hyprland on login --------
+# edit /etc/profile and append: 
+#:)
+if [[ $USER != "root" ]]; then
+	if command -v fastfetch &> /dev/null; then
+		# execute fastfetch if available
+		fastfetch
+	fi
+	if uwsm check may-start; then
+		exec uwsm start hyprland.desktop
+		export SHELL='/usr/bin/fish'
+	fi
+fi
+#:(
+
+# this will execute hyprland as a uwsm unit and (if installed) execute fastfetch
+
+reboot
+log in as usrname 
+
+-------- Zen/Firefox --------
+# isntall firefox
+sudo pacman -S firefox
+
+# install Zen
+# first install paru then
+paru -S zen-browser-bin
+
+# then follow https://wiki.archlinux.org/title/Firefox/Privacy to configure firefox for more privacy and security 
+# also import bookmarks from ~/.config/browser/bookmarks.html
+
+
+
+
+
+
+
+
+

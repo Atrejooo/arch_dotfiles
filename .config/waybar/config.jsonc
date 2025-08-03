@@ -1,0 +1,178 @@
+{
+  "margin-top" : 5,
+    "margin-left": 5,
+    "margin-right": 5,
+    "height" : 20,
+    "modules-left": [
+      "user",
+      "battery",
+      "custom/system-info",  // New consolidated widget
+      "privacy"
+      //"custom/cava"
+    ],
+    "modules-center": [
+      "hyprland/workspaces",
+    ],
+    "modules-right": [
+      "backlight",
+      "pulseaudio",
+      "network",
+      //"bluetooth",
+      //"cava",
+      "clock",
+    ],
+    "hyprland/window": {
+      "format": " {}",
+      "max-length": 35,
+      "rewrite": {
+        "": " "
+      },
+      "separate-outputs": true,
+    },
+    "hyprland/workspaces": {
+      "format": "{icon}",
+      "on-click": "activate",
+      "format-icons": {
+        "active": "",
+        //󰫢󰦥
+      },
+      "sort-by-number": true,
+      "persistent-workspaces": {
+        "*": 5, // 4 workspaces by default on every monitor
+        "HDMI-A-1": 3 // but only three on HDMI-A-1
+      },
+    },
+    "bluetooth": {
+      "format": "󰂲",
+      "format-disabled": "󰂲",
+      "format-off": "󰂲",
+      "format-on": "",
+      "format-connected": "󰂱",
+      "format-connected-battery": "󰂱 ({device_battery_percentage}% )",
+      "tooltip-format": "daemon is not running",
+      "tooltip-format-disabled": "bluetooth is disabled\n{controller_alias}: {controller_address} {controller_address_type}",
+      "tooltip-format-off": "bluetooth is turned off",
+      "tooltip-format-on": "bluetooth is turned on\n{controller_alias}: {controller_address} {controller_address_type}",
+      "tooltip-format-connected": "bluetooth is turned on\n{controller_alias}: {controller_address} {controller_address_type}\n{device_enumerate}",
+      "tooltip-format-enumerate-connected": "{device_alias} {device_address} {device_address_type}",
+      "on-click": "bluetoothctl power off",
+      "on-click-right": "bluetoothctl power on",
+    },
+    "clock": {
+      "format": "{:%H:%M}",
+      "tooltip-format": "<big>{:%a %d.%m.%Y}</big>\n<tt><small>{calendar}</small></tt>",
+    },
+    "cpu": {
+      "format": "{usage}% CPU",
+      "tooltip": false
+    },
+    "temperature": {
+      "critical-threshold": 80,
+      "format": "{temperatureC}°C",
+      "tooltip": false
+
+    },
+    "memory": {
+      "format": "{}% RAM"
+    },
+    "power-profiles-daemon": {
+      "format": "{icon}",
+      "tooltip-format": "Power profile: {profile}\nDriver: {driver}",
+      "tooltip": true,
+      "format-icons": {
+        "default": "",
+        "performance": "",
+        "balanced": "",
+        "power-saver": ""
+      }
+    },
+    "backlight": {
+        "format": "{icon}",
+        "tooltip-format": " {percent}", 
+        "format-icons": ["", "", "", "", "", "", "", "", ""]
+    },
+    "battery": {
+	    "interval": 3,
+      "states": {
+        "critical": 20
+      },
+      "format": "{capacity} {icon}",
+      "format-warning": " {capacity} {icon}",
+      "format-critical": " {capacity} {icon}",
+      "format-full": "󰇵 {icon}",
+      "format-charging": " {capacity} {icon}",
+      "format-plugged": " {capacity} {icon}",
+      "format-icons": [" ", " ", " ", " ", " "]
+    },
+    "privacy": {
+      "modules": [
+        {
+		      "type": "screenshare"
+	      },
+	      {
+		      "type": "audio-out"
+	      },
+	      {
+		      "type": "audio-in"
+	      }
+      ]
+    },
+    "network": {
+      "format-wifi": "{essid:.9} {icon}",
+      "format-ethernet": "{ipaddr}/{cidr} 󰈀",
+      "tooltip-format-wifi": "wifi: {ifname} via {gwaddr} at {frequency}GHz\nIP address: {ipaddr}/{cidr}\nsubnetmask: {netmask}",
+      "tooltip-format-ethernet": "Ethernet: {ifname} via {gwaddr}",
+      "tooltip-format-disconnected": "disconnected",
+      "format-linked": "{ifname} (No IP)",
+      "format-disconnected": "󰤭 ",
+      //"format-alt": "{essid} ({bandwidthUpBits}↑/{bandwidthDownBits}↓)",
+      "format-icons": [
+        "󰤯",    // Weakest
+        "󰤟",
+        "󰤢",
+        "󰤥",
+        "󰤨"  // Strongest
+      ]
+    },
+    "pulseaudio": {
+      "format": "{icon}",
+      "format-bluetooth": "󱃓 ",
+      "format-bluetooth-muted": "󱃓  ",
+      "format-muted": "󱃓",
+      "format-source": " {volume}",
+      "format-source-muted": "",
+	    "tooltip": true,
+      "tooltip-format": " {volume}\n{format_source}",
+      "on-click": "uwsm app -- pavucontrol",
+      "format-icons": [
+        "",
+        "󰪞",
+        "󰪟",
+        "󰪠",
+        "󰪡",
+        "󰪢",
+        "󰪣",
+        "󰪤",
+        "󰪥"
+      ]
+    },
+    "user": {
+      "format": " {user}  ",
+      "interval": 60,
+      "open-on-click": false
+    },
+    "custom/system-info": {
+        "format": "",
+        "tooltip": true,
+        "tooltip-format": "{text}",
+        "exec": "$HOME/.config/waybar/scripts/system-info.sh",
+        "return-type": "json",
+        "interval": 5,
+    },
+    "custom/cava": {
+      "exec": "$HOME/.config/waybar/scripts/cava_way.sh",
+      "format": "{text}",
+      //"on-click": "kitty -c ~/.config/dotfiles/kitty/kitty.conf nvim -c cd ~/.config/dotfiles/"
+    }
+}
+

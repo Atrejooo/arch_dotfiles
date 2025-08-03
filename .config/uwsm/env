@@ -1,0 +1,41 @@
+#############################
+### ENVIRONMENT VARIABLES ###
+#############################
+
+# nvidia specific 
+export WLR_NO_HARDWARE_CURSORS=1
+export GBM_BACKEND=nvidia-drm
+export LIBVA_DRIVER_NAME='nvidia'
+export __GLX_VENDOR_LIBRARY_NAME='nvidia'
+
+# starship config directory
+export STARSHIP_CONFIG=$HOME/.config/starship/starship.toml
+
+# grim directory
+export GRIM_DEFAULT_DIR=$HOME/local/imgs/screenshots
+
+# terminal 
+export TERMINAL='uwsm app -- kitty'
+
+# shell
+export SHELL='/usr/bin/fish'
+
+# webrowser 
+export BROWSER='uwsm app -- firefox'
+
+# GTK theme
+export GTK_THEME='Jolly-GTK' 
+
+##############
+### Colors ###
+##############
+export WALLPAPER=$HOME/.config/colors/wallpapers/samori_occhio_occidentale.png
+export COLOR_THEME=$HOME/.config/colors/pale
+
+# export WALLPAPER=$HOME/.config/colors/wallpapers/wllpr_opm.png
+# export COLOR_THEME=$HOME/.config/colors/void
+# apply color theme
+$HOME/.config/colors/.color_system/run_color_system.fish 
+
+source_file $HOME/.config/uwsm/colors.env
+

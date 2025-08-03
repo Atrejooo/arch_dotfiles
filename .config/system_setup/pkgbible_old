@@ -1,0 +1,316 @@
+alsa-utils [KEEP] (Advanced Linux Sound Architecture - Utilities) { }
+
+audacity [KEEP] (A program that lets you manipulate digital audio waveforms) {
+  A nice little GUI editor for easy sound manipulation. Good for creating SFX in games.
+}
+
+bambustudio-bin [AUR] (PC Software for BambuLab's 3D printers) {
+  AUR - for 3d print slicing and communication with the printer
+}
+
+base (Minimal package set to define a basic Arch Linux installation) {
+  Arch lol
+}
+
+base-devel (Basic tools to build Arch Linux packages) { }
+
+blender (A fully integrated 3D graphics creation suite) {
+  Powerfull GUI program for creating 3D models and rigging them and more...
+}
+
+brightnessctl [KEEP] (Lightweight brightness control tool) {
+  Can be used to change the brightness of the display via terminal -> is used in hyprland config as a keybind.
+}
+
+btop [KEEP] (A monitor of system resources, bpytop ported to C++) {
+  A lightweight terminal task manager. For monitoring system resources and processes.
+}
+
+btrfs-progs (Btrfs filesystem utilities) { }
+
+cava [KEEP] (Console-based Audio Visualizer with support for multiple backends) {
+  Cava uses the systems Audio output and displays it as a Visualizer inside of the terminal.
+}
+
+dragon-drop [AUR] (Simple drag-and-drop source/sink for X or Wayland) {
+  AUR - Used for creating a small GUI window that acts as a drag-and-drop source -> used in vifm (yd-keybind)
+}
+
+efibootmgr (Linux user-space application to modify the EFI Boot Manager) { }
+
+fastfetch [KEEP] (A feature-rich and performance oriented neofetch like system information tool) {
+  pretty, configurable and pretty fast. Just better neofetch.
+}
+
+feh [KEEP] (Fast and light imlib2-based image viewer) {
+  nice image viewer mostly used by vifm
+}
+
+firefox [KEEP] (Fast, Private & Safe Web Browser) {
+  Simple and powerfull Browser. Has hardend settings so no one can find me...
+}
+
+firewalld [KEEP] (Firewall daemon with D-Bus interface) { }
+
+fish [KEEP] (Smart and user friendly shell intended mostly for interactive use) {
+  Very nice completion, very nice highlighting, very fancy. Just a nice shell.
+}
+
+freecad [KEEP] (Feature based parametric 3D CAD modeler) {
+  A very decend GUI CAD tool. For mathematically based modeling and design.
+}
+
+fzf [KEEP] (Command-line fuzzy finder) {
+  Very fast and cool fuzzy finder for all sorts of stuff.
+}
+
+git (the fast distributed version control system) {
+  Well git is just great for version control.
+}
+
+gitui [KEEP] (Blazing fast terminal-ui for git written in Rust) {
+  Fast but is it good? I don't know yet.
+}
+
+glmark2 [REMOVED] (An OpenGL 2.0 and ES 2.0 benchmark) {
+  A little graphics benchmark for checking GPU performance.
+}
+
+go-ethereum (Official Go implementation of the Ethereum protocol) {
+  Only for htw.
+}
+
+graphviz (Graph visualization software) { }
+
+grim (Screenshot utility for Wayland) {
+  Takes nice screenshots yay. -> uwsm env file controls the screenshot directory
+}
+
+grub (GNU GRand Unified Bootloader (2)) { }
+
+grub-btrfs (Include btrfs snapshots in GRUB boot options) { }
+
+gvfs (Virtual filesystem implementation for GIO) { }
+
+hypridle (hyprland’s idle daemon) {
+  Is used for monitoring user activty and going into powersave mode after prolonged activity. -> configured under ./config/hypr/*
+}
+
+hyprland (a highly customizable dynamic tiling Wayland compositor) {
+  Center peace of the rice. -> configured under ./config/hypr/*
+  Nice and beautiful tiling WM.
+}
+
+hyprlock (hyprland’s GPU-accelerated screen locking utility) {
+  Provides a lockscreen that hides the screen and asks for a password -> configured under ./config/hypr/*
+}
+
+hyprpaper (a blazing fast wayland wallpaper utility with IPC controls) {
+  A wallpaper tool for Hyprland. Displays any wallpaper. -> configured under ./config/hypr/*
+}
+
+hyprpicker (A wlroots-compatible Wayland color picker that does not suck) {
+  Good little color picker for super + A = color picker :)
+}
+
+hyprpolkitagent (Simple polkit authentication agent for Hyprland, written in QT/QML) {
+  A authenticator for when GUI applications need sudo privaleges or access otherwise.
+}
+
+inotify-tools (inotify-tools is a C library and a set of command-line programs for Linux providing a simple interface to inotify.) {
+  used for the watch-puml script
+}
+
+intel-ucode (Microcode update files for Intel CPUs) { }
+
+jdk-openjdk (OpenJDK Java 24 development kit) {
+  For when you want to make jaba programms.
+}
+
+jupyterlab (JupyterLab computational environment) {
+  Only for htw.
+}
+
+kitty (A modern, hackable, featureful, OpenGL-based terminal emulator) {
+  A very nice and simple Terminal emulaor. -> Terminal set under uwsm/env file as a global variable.
+}
+
+lazygit (Simple terminal UI for git commands) {
+  Is good but is it good enugh.
+}
+
+lib32-vulkan-mesa-layers (Mesa's Vulkan layers - 32-bit) { }
+
+libreoffice-still (LibreOffice maintenance branch) {
+  Nice tools for office tasks like documents and presentations.
+}
+
+linux (The Linux kernel and modules) { }
+
+linux-firmware (Firmware files for Linux - Default set) { }
+
+linux-headers (Headers and scripts for building modules for the Linux kernel) { }
+
+lua-language-server (Lua Language Server coded by Lua) {
+  Dunno if I really need this?
+}
+
+man-db (A utility for reading man pages) { }
+
+man-pages (Linux man pages) { }
+
+maven (Java project management and project comprehension tool) {
+  Needed for big Java projects.
+}
+
+mesa-utils (Essential Mesa utilities) { }
+
+mpv (a free, open source, and cross-platform media player) {
+  A simple and very nice audio and video player that is terminal based.
+}
+
+nano (Pico editor clone with enhancements) {
+  Little backup editor.
+}
+
+neovim (Fork of Vim aiming to improve user experience, plugins, and GUIs) {
+  Fast nice looking terminal text editor. Very configureable and very fast. -> config under .config/nvim
+}
+
+networkmanager (Network connection manager and user applications) { }
+
+npm [REMOVED] (JavaScript package manager) {
+  only needed for nodejs (htw web dev) :(
+}
+
+nvidia-dkms (NVIDIA kernel modules - module sources) { }
+
+nvidia-prime (NVIDIA Prime Render Offload configuration and utilities) { }
+
+nvidia-settings (Tool for configuring the NVIDIA graphics driver) { }
+
+nvidia-utils (NVIDIA drivers utilities) { }
+
+obs-studio (Free, open source software for live streaming and recording) {
+  very good screen recoder
+}
+
+openjdk-doc (OpenJDK Java 24 documentation) {
+  dunno what I have this for
+}
+
+openvpn (An easy-to-use, robust and highly configurable VPN (Virtual Private Network)) { }
+
+paru [AUR] (Feature packed AUR helper) {
+  Very simple but safe AUR tool. Build from git.
+}
+
+paru-debug [AUR] (Detached debugging symbols for paru) { }
+
+pavucontrol (PulseAudio Volume Control) { }
+
+picocom (Minimal dumb-terminal emulation program, very much like minicom) {
+  was used for RSP-32
+}
+
+pipewire-alsa (Low-latency audio/video router and processor - ALSA configuration) { }
+
+pipewire-pulse (Low-latency audio/video router and processor - PulseAudio replacement) { }
+
+plantuml (Component that allows to quickly write uml diagrams) {
+  Nice uml diagrams - used in pumly (script in ~/scripts for auto generating svg)
+}
+
+python-pipenv (Sacred Marriage of Pipfile, Pip, & Virtualenv.) {
+  Only needed for bigger python projects (something you should never do) - only for htw.
+}
+
+python-ruff (An extremely fast Python linter, written in Rust) {
+  I don't think I need it as a package 
+  since nvim/mason should install it automatically
+}
+
+qt5-wayland (Provides APIs for Wayland) { }
+
+ripgrep (A search tool that combines the usability of ag with the raw speed of grep) {
+  Used in nvim fro find commands.
+}
+
+rose-pine-hyprcursor [AUR] (None) { }
+
+rustup (The Rust toolchain installer) { }
+
+slurp (Select a region in a Wayland compositor) { }
+
+snap-pac (Pacman hooks that use snapper to create pre/post btrfs snapshots like openSUSE's YaST) { }
+
+snapper (A tool for managing BTRFS and LVM snapshots) { }
+
+sof-firmware (Sound Open Firmware) { }
+
+starship (The cross-shell prompt for astronauts) { }
+
+steam (Valve's digital software delivery system) {
+  nice games for me -> you can use gamescope to improve games performace -> arch wiki for gamescope
+}
+
+sudo (Give certain users the ability to run some commands as root) { }
+
+texinfo (GNU documentation system for on-line information and printed output) { }
+
+thunar (Modern, fast and easy-to-use file manager for Xfce) { }
+
+tlp (Linux Advanced Power Management) {
+  Installed mainly to try imrpoving hyprlands performance on igpu.
+}
+
+tokei (A blazingly fast CLOC (Count Lines Of Code) program) { }
+
+tree-sitter-cli (CLI tool for developing, testing, and using Tree-sitter parsers) {
+  treesitter for nvim -> was needed for .tex files for some reason
+}
+
+ttf-liberation (Font family which aims at metric compatibility with Arial, Times New Roman, and Courier New) {
+  I am pretty sure that this is ued for base hyprland config and something like libreoffice.
+}
+
+ttf-nerd-fonts-symbols-mono (High number of extra glyphs from popular 'iconic fonts' (monospace)) { }
+
+typst (A markup-based typesetting system for the sciences) {
+  Tex alternative for faster and easier ducument writing. 
+  Easier to use. 
+  Very nice :)
+}
+
+unzip (For extracting and viewing files in .zip archives) { }
+
+uwsm (A standalone Wayland session manager) { }
+
+vifm (A file manager with curses interface, which provides Vi[m]-like environment) { }
+
+vim (Vi Improved, a highly configurable, improved version of the vi text editor) { }
+
+vscodium-bin [AUR] (Binary releases of VS Code without MS branding/telemetry/licensing.) { }
+
+vulkan-mesa-layers (Mesa's Vulkan layers) { }
+
+waybar (Highly customizable Wayland bar for Sway and Wlroots based compositors) { }
+
+wireplumber (Session / policy manager implementation for PipeWire) { }
+
+wl-clipboard (Command-line copy/paste utilities for Wayland) { }
+
+wofi (launcher for wlroots-based wayland compositors) { }
+
+wtype (xdotool type for wayland) { }
+
+xdg-desktop-portal-hyprland (xdg-desktop-portal backend for hyprland) { }
+
+xorg-xrandr (Primitive command line interface to RandR extension) { }
+
+yay-debug [AUR] (Detached debugging symbols for yay) { }
+
+yazi (Blazing fast terminal file manager written in Rust, based on async I/O) { }
+
+zen-browser-bin [AUR] (Performance oriented Firefox-based web browser) { }
+
