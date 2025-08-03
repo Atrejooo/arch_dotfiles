@@ -225,6 +225,12 @@ dotfiles config --local status.showUntrackedFiles no
 # (might add functionality for that later in the pkgbible)
 # check pkgbible for foreign/missing packages i.e. Zen browser or dragondrop
 
+# paru AUR helper
+# sudo pacman -S --needed base-devel should already be installed via pkgbible
+rustup default stable # install latest stable rust version
+git clone https://aur.archlinux.org/paru.git
+cd paru
+makepkg -si
 
 # load all scripts to /usr/local/bin with: 
 ~/.scripts/load-scripts.sh ~/.scripts
