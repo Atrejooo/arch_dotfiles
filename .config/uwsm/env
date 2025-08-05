@@ -21,10 +21,10 @@ export TERMINAL='uwsm app -- kitty'
 export SHELL='/usr/bin/fish'
 
 # webrowser 
-export BROWSER='uwsm app -- firefox'
+export BROWSER='uwsm app -- zen-browser'
 
 # GTK theme
-export GTK_THEME='Jolly-GTK' 
+export GTK_THEME='Dracula' 
 
 ##############
 ### Colors ###

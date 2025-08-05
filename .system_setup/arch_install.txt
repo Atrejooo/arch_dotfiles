@@ -270,6 +270,7 @@ sudo pacman -S firefox
 paru -S zen-browser-bin
 
 # then follow https://wiki.archlinux.org/title/Firefox/Privacy to configure firefox for more privacy and security 
+# (or under ~/.config/browser/privacy_settings.txt)
 # also import bookmarks from ~/.config/browser/bookmarks.html
 
 

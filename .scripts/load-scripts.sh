@@ -8,6 +8,7 @@ fi
 
 source_dir="$1"
 target_dir="/usr/local/bin"
+list_file="$source_dir/.script_list"
 
 # Verify source directory exists
 if [ ! -d "$source_dir" ]; then
@@ -15,38 +16,44 @@ if [ ! -d "$source_dir" ]; then
     exit 1
 fi
 
-# Confirm destructive action
-read -p "This will DELETE ALL FILES in $target_dir. Continue? [y/N] " -n 1 -r
-echo
-if [[ ! $REPLY =~ ^[Yy]$ ]]; then
-    echo "Aborted."
-    exit 1
+# Create .script_list if it doesn't exist
+if [ ! -f "$list_file" ]; then
+    touch "$list_file"
 fi
 
-# Clear target directory
-echo "Clearing $target_dir..."
-sudo rm -rf "$target_dir"/* 2>/dev/null
-sudo rm -rf "$target_dir"/.* 2>/dev/null  # Remove dotfiles too
+# Read previous script names
+previous_scripts=()
+if [ -s "$list_file" ]; then
+    mapfile -t previous_scripts < "$list_file"
+fi
 
-# Process each executable file
-find "$source_dir" -maxdepth 1 -type f -executable -print0 | while IFS= read -r -d $'\0' file; do
-    # Get filename without path
+# Get current executables (without extensions)
+current_scripts=()
+while IFS= read -r -d $'\0' file; do
     filename=$(basename -- "$file")
-    
-    # Remove extension
-    newname="${filename%.*}"
-    
-    # Skip if filename becomes empty after extension removal
-    if [ -z "$newname" ]; then
-        echo "Warning: Skipping file with no basename: '$filename'" >&2
-        continue
+    script_name="${filename%.*}"
+    current_scripts+=("$script_name")
+done < <(find "$source_dir" -maxdepth 1 -type f -executable -print0)
+
+# Copy new executables (without extensions) to /usr/local/bin
+for script_name in "${current_scripts[@]}"; do
+    executable=$(find "$source_dir" -maxdepth 1 -type f -executable -name "$script_name.*" -print -quit)
+    if [ -n "$executable" ]; then
+        echo "Installing: $script_name"
+        sudo cp -p "$executable" "$target_dir/$script_name"
     fi
-    
-    target="$target_dir/$newname"
-    
-    # Copy with preserved permissions
-    echo "Installing: $filename -> $newname"
-    sudo cp -p "$file" "$target"
 done
 
-echo "Installation complete - $target_dir has been replaced with new executables"
+# Remove orphaned scripts (in .script_list but not in current_scripts)
+for old_script in "${previous_scripts[@]}"; do
+    if [[ ! " ${current_scripts[*]} " =~ " $old_script " ]]; then
+        echo "Removing orphaned script: $old_script"
+        sudo rm -f "$target_dir/$old_script"
+    fi
+done
+
+# Update .script_list with current script names
+printf "%s\n" "${current_scripts[@]}" > "$list_file"
+
+echo "Sync complete. Current scripts:"
+printf " - %s\n" "${current_scripts[@]}"

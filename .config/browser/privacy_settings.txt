@@ -1,0 +1,36 @@
+# refers to https://wiki.archlinux.org/title/Firefox/Privacy
+
+# better load time and protection :)
+privacy.trackingprotection.enabled = true
+
+# experimental setting but can be good 
+privacy.resistFingerprinting = true
+
+# overriedes user agent (platform must match user agent or figerprinting becomes unique)
+# The value Mozilla/5.0 (Windows NT 10.0; rv:102.0) Gecko/20100101 Firefox/102.0 is used as the user agent for the Tor browser, thus being very common.
+general.useragent.override = Mozilla/5.0 (Windows NT 10.0; rv:102.0) Gecko/20100101 Firefox/102.0
+# The value Win32 is used as the platform for the Tor browser
+general.platform.override = Win32
+
+# hide ip
+media.peerconnection.ice.default_address_only = true
+media.peerconnection.enabled = false # (breaks discord)
+
+# hide privios website 
+network.http.sendRefererHeader = 0
+
+# used for fingerprinting
+privacy.donottrackheader.enabled = false
+
+# route DNS request over encrypted connection with cloudfare server 
+network.trr.mode = 3
+
+# enable Encrypted Client Hello (ECH)
+network.dns.echconfig.enabled = true
+network.dns.http3_echconfig.enabled = true
+
+
+# send no information to 3rd paries for security checks
+browser.safebrowsing.malware.enabled = false
+browser.safebrowsing.phishing.enabled = false
+browser.safebrowsing.downloads.enabled = false
