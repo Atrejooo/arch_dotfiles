@@ -1,0 +1,13 @@
+[mgr]
+prepend_keymap = [
+    { on = "S", run = "search --via=fd", desc = "Search files by name via fd" },
+    { on = "s", run = 'shell "$SHELL" --block', desc = "Open shell here" },
+    { on = [ "Y" ], run = '''
+        shell 'dragon-drop -x -A "$@"' --confirm
+    ''' },
+    { on = [ "T" ], run = '''
+        shell '$TERMINAL "$d"' --confirm
+    ''' },
+    { on = "K", run = "arrow -20%", desc = "Move cursor up half page" },
+    { on = "J", run = "arrow 20%", desc = "Move cursor down half page" },
+]

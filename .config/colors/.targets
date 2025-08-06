@@ -5,3 +5,4 @@ make ~/.config/uwsm/colors.env
 replace ~/.config/nvim/colors/gruvbuddy.lua
 replace ~/.config/starship/starship.toml
 replace ~/.config/kitty/current-theme.conf
+replace ~/.config/yazi/theme.toml
