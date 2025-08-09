@@ -28,7 +28,7 @@ end
 
 Color.new("white", "#cfdfff") -- @@txt_white@@
 Color.new("red", "#c62e60") -- @@txt_red@@
-Color.new("pink", "#de66ff") -- @@txt_highlight@@
+Color.new("pink", "#aaccff") -- @@txt_highlight@@
 Color.new("green", "#83edb6") -- @@txt_green@@
 Color.new("yellow", "#FFB785") -- @@txt_yellow@@
 Color.new("blue", "#6287FC") -- @@txt_blue@@
@@ -36,13 +36,13 @@ Color.new("cyan", "#82d4fC") -- @@txt_cyan@@
 Color.new("purple", "#8351FC") -- @@txt_purple@@
 Color.new("orange", "#dF6350") -- @@txt_orange@@
 
-Color.new("normal", "#9fa0ff") -- @@txt_main@@
+Color.new("normal", "#909acb") -- @@txt_main@@
 Color.new("superwhite", "#cfdfff") -- @@txt_white@@
-Color.new("sel", "#5454f4") -- @@txt_sel@@
-Color.new("pale", "#6252A4") -- @@txt_pale@@
-Color.new("bg", "#27005a") -- @@dark_main@@
-Color.new("fg", "#2c0085") -- @@light_base@@
-Color.new("dark", "#090018") -- @@dark_base@@
+Color.new("sel", "#bbabff") -- @@txt_sel@@
+Color.new("pale", "#708a9b") -- @@txt_pale@@
+Color.new("bg", "#111111") -- @@dark_main@@
+Color.new("fg", "#47476a") -- @@light_base@@
+Color.new("dark", "#000000") -- @@dark_base@@
 
 -- normal ui and stuff
 groupy({

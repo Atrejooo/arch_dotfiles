@@ -8,6 +8,9 @@ export GBM_BACKEND=nvidia-drm
 export LIBVA_DRIVER_NAME='nvidia'
 export __GLX_VENDOR_LIBRARY_NAME='nvidia'
 
+# trying to fix lagging with second monitor
+# export AQ_DRM_DEVICES="/dev/dri/card1:/dev/dri/card0"
+
 # starship config directory
 export STARSHIP_CONFIG=$HOME/.config/starship/starship.toml
 

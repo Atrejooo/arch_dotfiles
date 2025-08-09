@@ -1,20 +1,20 @@
 
 [tabs]
 # Tab
-active   = {bg = "magenta", fg = "#27005a" } #@@dark_main@@
-inactive = {fg = "magenta", bg = "#27005a"} #@@dark_main@@
+active   = {bg = "magenta", fg = "#111111" } #@@dark_main@@
+inactive = {fg = "magenta", bg = "#111111"} #@@dark_main@@
 
 [mode]
-normal_main = { bg = "blue", fg = "#27005a" } #@@dark_main@@
-normal_alt  = { fg = "blue", bg = "#27005a" } #@@dark_main@@
+normal_main = { bg = "blue", fg = "#111111" } #@@dark_main@@
+normal_alt  = { fg = "blue", bg = "#111111" } #@@dark_main@@
 
 # Select mode
-select_main = { bg = "green", fg = "#27005a" } #@@dark_main@@
-select_alt  = { fg = "green", bg = "#27005a" } #@@dark_main@@
+select_main = { bg = "green", fg = "#111111" } #@@dark_main@@
+select_alt  = { fg = "green", bg = "#111111" } #@@dark_main@@
 
 # Unset mode
-unset_main = { bg = "yellow", fg = "#27005a" } #@@dark_main@@
-unset_alt  = { fg = "yellow", bg = "#27005a" } #@@dark_main@@
+unset_main = { bg = "yellow", fg = "#111111" } #@@dark_main@@
+unset_alt  = { fg = "yellow", bg = "#111111" } #@@dark_main@@
 
 
 
@@ -74,7 +74,7 @@ separator_close = ""
 
 # Progress
 progress_label  = { bold = true }
-progress_normal = { fg = "#6114ff", bg = "black" } #@@light_main@@
+progress_normal = { fg = "#6b6bbb", bg = "black" } #@@light_main@@
 progress_error  = { fg = "red", bg = "black" }
 
 # Permissions
@@ -100,7 +100,7 @@ inactive = {}
 # : Input {{{
 
 [input]
-border   = { fg = "#6114ff" } #@@light_main@@
+border   = { fg = "#6b6bbb" } #@@light_main@@
 title    = {}
 value    = {}
 selected = { reversed = true }
@@ -111,8 +111,8 @@ selected = { reversed = true }
 # : Confirm {{{
 
 [confirm]
-border     = { fg = "#6114ff" } #@@light_main@@
-title      = { fg = "#6114ff" } #@@light_main@@
+border     = { fg = "#6b6bbb" } #@@light_main@@
+title      = { fg = "#6b6bbb" } #@@light_main@@
 content    = {}
 list       = {}
 btn_yes    = { reversed = true }
@@ -125,7 +125,7 @@ btn_labels = [ "  [Y]es  ", "  (N)o  " ]
 # : Completion {{{
 
 [completion]
-border   = { fg = "#6114ff" } #@@light_main@@
+border   = { fg = "#6b6bbb" } #@@light_main@@
 active   = { reversed = true }
 inactive = {}
 
@@ -140,7 +140,7 @@ icon_command = ""
 # : Tasks {{{
 
 [tasks]
-border  = { fg = "#6114ff" } #@@light_main@@
+border  = { fg = "#6b6bbb" } #@@light_main@@
 title   = {}
 hovered = { fg = "magenta", underline = true }
 
@@ -218,7 +218,7 @@ rules = [
 
 	# Fallback
 	# { name = "*", fg = "white" },
-	{ name = "*/", fg = "#6114ff" } #@@light_main@@
+	{ name = "*/", fg = "#6b6bbb" } #@@light_main@@
 ]
 
 # : }}}

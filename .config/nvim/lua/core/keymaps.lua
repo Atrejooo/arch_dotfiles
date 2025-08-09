@@ -123,8 +123,8 @@ end
 vim.keymap.set("n", "<leader>tl", toggle_lsp_progress, { desc = "[t]oggle [L]SP notifications" })
 
 -- toggels comments
-vim.keymap.set({ "n", "v" }, "<leader>tc", "gcc", { remap = true, desc = "[t]oggle line [c]omment" })
-vim.keymap.set({ "n", "v" }, "<leader>cc", "gcc", { remap = true, desc = "[c]ode toggle [c]omment" })
+vim.keymap.set({ "n", "v" }, "<leader>tc", "gc", { remap = true, desc = "[t]oggle line [c]omment" })
+vim.keymap.set({ "n", "v" }, "<leader>cc", "gc", { remap = true, desc = "[c]ode toggle [c]omment" })
 
 -- toggel wrapping
 vim.keymap.set("n", "<leader>tw", function()

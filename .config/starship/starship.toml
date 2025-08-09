@@ -10,14 +10,14 @@ add_newline = false
 palette = 'colors'
 
 [palettes.colors]
-dark_base = '#090018'                # @@dark_base@@ 
-dark_main = '#27005a'                # @@dark_main@@ 
-light_base = '#2c0085'               # @@light_base@@ 
-light_main = '#6114ff'               # @@light_main@@ 
-light_highlight = '#9753ff'          # @@light_highlight@@
-txt_main = '#9fa0ff'                 # @@txt_main@@ 
-txt_dark = '#430db2'                 # @@txt_dark@@ 
-txt_highlight = '#de66ff'            # @@txt_highlight@@ 
+dark_base = '#000000'                # @@dark_base@@ 
+dark_main = '#111111'                # @@dark_main@@ 
+light_base = '#47476a'               # @@light_base@@ 
+light_main = '#6b6bbb'               # @@light_main@@ 
+light_highlight = '#adddff'          # @@light_highlight@@
+txt_main = '#909acb'                 # @@txt_main@@ 
+txt_dark = '#111111'                 # @@txt_dark@@ 
+txt_highlight = '#aaccff'            # @@txt_highlight@@ 
 txt_red = '#c62e60'                  # @@txt_red@@        
 
 # Prompt symbols 

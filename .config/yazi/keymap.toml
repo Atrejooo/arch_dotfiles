@@ -4,10 +4,10 @@ prepend_keymap = [
     { on = "s", run = 'shell "$SHELL" --block', desc = "Open shell here" },
     { on = [ "Y" ], run = '''
         shell 'dragon-drop -x -A "$@"' --confirm
-    ''' },
+    ''', desc = "dragon drop it!" },
     { on = [ "T" ], run = '''
-        shell '$TERMINAL "$d"' --confirm
+        shell '$TERMINAL "$d" & disown' --confirm
     ''' },
-    { on = "K", run = "arrow -20%", desc = "Move cursor up half page" },
-    { on = "J", run = "arrow 20%", desc = "Move cursor down half page" },
+    { on = "K", run = "arrow -4", desc = "Move cursor a tiny bit!" },
+    { on = "J", run = "arrow 4", desc = "Move cursor a tiny bit!" },
 ]
