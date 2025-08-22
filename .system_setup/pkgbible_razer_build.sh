@@ -44,12 +44,9 @@ sudo pacman -S --needed --noconfirm \
     pipewire-alsa \
     freecad \
     hyprpolkitagent \
-    unzip \
     hyprpaper \
-    wofi \
     sof-firmware \
     qt5-wayland \
-    thunar \
     pavucontrol \
     rustup \
     typst \

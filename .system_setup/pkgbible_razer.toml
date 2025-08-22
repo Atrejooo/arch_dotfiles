@@ -231,16 +231,8 @@ tags = ['KEEP']
 desc = "Simple polkit authentication agent for Hyprland, written in QT/QML"
 tags = ['KEEP']
 
-[unzip]
-desc = "For extracting and viewing files in .zip archives"
-tags = ['KEEP']
-
 [hyprpaper]
 desc = "a blazing fast wayland wallpaper utility with IPC controls"
-tags = ['KEEP']
-
-[wofi]
-desc = "launcher for wlroots-based wayland compositors"
 tags = ['KEEP']
 
 [sof-firmware]
@@ -250,10 +242,6 @@ tags = ['KEEP']
 [qt5-wayland]
 desc = "Provides APIs for Wayland"
 tags = ['KEEP']
-
-[thunar]
-desc = "Modern, fast and easy-to-use file manager for Xfce"
-tags = ['KEEP', 'REMOVED']
 
 [pavucontrol] 
 desc = "PulseAudio Volume Control"
@@ -303,10 +291,14 @@ tags = []
 desc = "Microcode update image for AMD CPUs"
 tags = []
 
-[godot]
-desc = "Advanced cross-platform 2D and 3D game engine"
-tags = ['REMOVED']
-
 [steam]
 desc = "Valve's digital software delivery system"
+tags = []
+
+[bambustudio-bin]
+desc = "PC Software for BambuLab's 3D printers"
+tags = ['FOREIGN']
+
+[7zip]
+desc = "File archiver for extremely high compression"
 tags = []

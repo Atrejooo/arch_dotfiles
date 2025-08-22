@@ -17,6 +17,7 @@ return {
 				"query",
 				"vim",
 				"vimdoc",
+				"gdscript",
 			},
 			-- Autoinstall languages that are not installed
 			auto_install = true,

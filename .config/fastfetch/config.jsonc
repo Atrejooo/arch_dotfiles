@@ -25,10 +25,10 @@
       "type": ["num", "bar"]
     },
     "bar": {
-      "charElapsed": "#",
-      "charTotal": "-",
-      "borderLeft": "[",
-      "borderRight": "]",
+      "elapsed": "#",
+      "total": "-",
+      "left": "[",
+      "right": "]",
     },
     "key": {
       "width": 21,
